@@ -23,8 +23,10 @@ namespace Api
             var config = new Config(3); //deserilise from json
             services.AddSingleton(config);
 
-            var connectionString = new ConnectionString(Configuration["ConnectionString"]);
-            services.AddSingleton(connectionString);
+            var commandsConnectionString = new CommandsConnectionString(Configuration["ConnectionString"]);
+            var queriesConnectionString = new QueriesConnectionString(Configuration["ConnectionString"]);
+            services.AddSingleton(commandsConnectionString);
+            services.AddSingleton(queriesConnectionString);
 
             services.AddSingleton<SessionFactory>();
             services.AddSingleton<Messages>();
